@@ -13,9 +13,22 @@ rand = "0.8.5"
 rand_chacha = "0.3.1"
 rayon = "1.10.0"
 
+p3-circle = { path = "../Plonky3/circle" }
+p3-field = { path = "../Plonky3/field" }
+p3-matrix = { path = "../Plonky3/matrix" }
+p3-mersenne-31 = { path = "../Plonky3/mersenne-31" }
+p3-util = { path = "../Plonky3/util" }
+typenum = "1.17.0"
+metal = "0.29.0"
+objc = "0.2.7"
+
 [dev-dependencies]
 divan = "0.1.14"
 
 [[bench]]
 name = "main"
+harness = false
+
+[[bench]]
+name = "tmat"
 harness = false

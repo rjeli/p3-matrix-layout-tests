@@ -39,12 +39,13 @@ fn m31_mul(lhs: uint32x4_t, rhs: uint32x4_t) -> uint32x4_t {
             aarch64::vreinterpretq_s32_u32(rhs),
         ));
         let prod_lo32 = aarch64::vmulq_u32(lhs, rhs);
+
+        // t = lo32 - hi31 * P
         let t = aarch64::vmlsq_u32(prod_lo32, prod_hi31, PP);
+
+        // reduce t from [0,2P] to [0,P]
         let u = aarch64::vsubq_u32(t, PP);
         aarch64::vminq_u32(t, u)
-
-        // aarch64::vmulq_u32(lhs, rhs)
-        // aarch64::vsubq_u32(lhs, rhs)
     }
 }
 
